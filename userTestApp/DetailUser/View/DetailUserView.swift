@@ -71,6 +71,7 @@ final class DetailUserView: UIView {
         return label
     }()
     
+    
     let contactsView = ContactsUserView()
     let aboutView = AboutUserView()
     let tagsView = TagsUserView()

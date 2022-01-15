@@ -11,14 +11,14 @@ final class UserTableViewCell: UITableViewCell {
     
     static let id = "UserTableViewCell"
     
-    private lazy var nameLabel: UILabel = {
+    lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     
-    private lazy var genderLabel: UILabel = {
+    lazy var genderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
@@ -26,7 +26,7 @@ final class UserTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var ageLabel: UILabel = {
+    lazy var ageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right

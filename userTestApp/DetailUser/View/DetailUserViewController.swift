@@ -66,13 +66,16 @@ final class DetailUserViewController: UIViewController {
     private func updateNavBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
+
     
     @objc private func showFriendsButtonTapped() {
-        
+        let friendsVC = FriendsUserViewController()
+        present(friendsVC, animated: true, completion: nil)
     }
 
+    
     @objc private func showLocationButtonTapped() {
-        
+        let locationVC = FriendsUserViewController()
+        present(locationVC, animated: true, completion: nil)
     }
 }

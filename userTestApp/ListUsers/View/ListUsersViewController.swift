@@ -10,38 +10,42 @@ import UIKit
 final class ListUsersViewController: UIViewController {
     
     private let listUsersView = ListUsersView()
+    private var sortAgeUsersArray = [User]()
     
     private var viewModel: ListUsersViewModelProtocol? {
         didSet {
+            self.viewModel?.sortAgeUsers = { [weak self] sortUsers in
+                self?.sortAgeUsersArray = sortUsers
+                self?.listUsersView.usersTableView.reloadData()
+            }
+            
             self.viewModel?.fetchUsers {
                 self.listUsersView.usersCollectionView.reloadData()
                 self.listUsersView.usersTableView.reloadData()
             }
         }
     }
-    
-    override func loadView() {
-        super.loadView()
-        
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .systemBackground
-        self.updateNavBar()
-        
         self.viewModel = ListUsersViewModel()
         
         self.listUsersView.frame = self.view.bounds
         self.view.addSubview(self.listUsersView)
         
+        self.updateNavBar()
+        self.setupTableAndCollectionView()
+    }
+    
+    
+    func setupTableAndCollectionView() {
         self.listUsersView.usersCollectionView.delegate = self
         self.listUsersView.usersCollectionView.dataSource = self
         self.listUsersView.usersTableView.delegate = self
         self.listUsersView.usersTableView.dataSource = self
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -50,7 +54,20 @@ final class ListUsersViewController: UIViewController {
     
     private func updateNavBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = "Users" //delete
+        self.title = "Users"
+        let ageUpBarButton = UIBarButtonItem(title: "age ↑",
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(sortAgeUpButtonTapped))
+        let ageDownBarButton = UIBarButtonItem(title: "age ↓",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(sortAgeDownButtonTapped))
+        self.navigationItem.rightBarButtonItems = [ageDownBarButton, ageUpBarButton]
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "gender",
+                                                    style: .plain,
+                                                    target: self,
+                                                    action: #selector(chooiseGenderButtonTapped))
     }
     
     private func nextVC(at indexPath: IndexPath) {
@@ -58,6 +75,18 @@ final class ListUsersViewController: UIViewController {
         let detailVC = DetailUserViewController()
         detailVC.viewModel = detailViewModel
         self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    @objc private func sortAgeUpButtonTapped() {
+        self.viewModel?.sortAgeUpUsersPressed()
+    }
+    
+    @objc private func sortAgeDownButtonTapped() {
+        self.viewModel?.sortAgeDownUsersPressed()
+    }
+           
+    @objc private func chooiseGenderButtonTapped() {
+        
     }
 }
 
@@ -120,6 +149,14 @@ extension ListUsersViewController: UITableViewDataSource {
         let cell = self.listUsersView.usersTableView.dequeueReusableCell(withIdentifier: UserTableViewCell.id, for: indexPath)
         guard let userCell = cell as? UserTableViewCell else { return cell }
         userCell.viewModel = self.viewModel?.tableCellViewModel(at: indexPath)
+        
+        if sortAgeUsersArray.isEmpty {
+            userCell.viewModel = self.viewModel?.tableCellViewModel(at: indexPath)
+        } else {
+            userCell.nameLabel.text = self.sortAgeUsersArray[indexPath.row].name
+            userCell.ageLabel.text = "\(self.sortAgeUsersArray[indexPath.row].age)"
+            userCell.genderLabel.text = self.sortAgeUsersArray[indexPath.row].gender
+        }
         
         return userCell
     }

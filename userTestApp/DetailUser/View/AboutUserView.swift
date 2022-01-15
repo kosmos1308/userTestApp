@@ -21,10 +21,12 @@ final class AboutUserView: UIView {
     lazy var aboutTextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.isScrollEnabled = true
+        textView.isScrollEnabled = false
         textView.isEditable = false
         textView.backgroundColor = .systemGray5
         textView.font = .systemFont(ofSize: 17)
         return textView
     }()
+    
+    //add button "show more ..."
 }

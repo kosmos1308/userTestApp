@@ -14,6 +14,10 @@ protocol ListUsersViewModelProtocol: AnyObject {
     func tableCellViewModel(at indexPath: IndexPath) -> UserTableViewCellViewModelProtocol
     func collectionViewCellViewModel(at indexPath: IndexPath) -> UserCollectionViewCellViewModelProtocol
     func selectedCell(at indexPath: IndexPath) -> DetailUserViewModelProtocol
+        
+    var sortAgeUsers: (([User]) -> Void)? { get set }
+    func sortAgeUpUsersPressed()
+    func sortAgeDownUsersPressed()
 }
 
 final class ListUsersViewModel: ListUsersViewModelProtocol {
@@ -44,5 +48,16 @@ final class ListUsersViewModel: ListUsersViewModelProtocol {
         let user = self.users[indexPath.row]
         return DetailUserViewModel(user: user)
     }
+    
+    var sortAgeUsers: (([User]) -> Void)?
+    
+    func sortAgeUpUsersPressed() {
+        self.sortAgeUsers?(self.users.sorted { $0.age < $1.age })
+    }
+    
+    func sortAgeDownUsersPressed() {
+         self.sortAgeUsers?(self.users.sorted { $0.age > $1.age })
+    }
+    
 }
 

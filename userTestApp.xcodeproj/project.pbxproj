@@ -29,6 +29,9 @@
 		E9CC11E027921C1B00F29E85 /* AboutUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11DF27921C1B00F29E85 /* AboutUserView.swift */; };
 		E9CC11E32792252800F29E85 /* TagsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11E22792252800F29E85 /* TagsUserView.swift */; };
 		E9CC11E5279229F900F29E85 /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11E4279229F900F29E85 /* OtherUserView.swift */; };
+		E9CC11EA27924F2700F29E85 /* AboutUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11E927924F2700F29E85 /* AboutUserViewController.swift */; };
+		E9CC11EC27924FA300F29E85 /* FriendsUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11EB27924FA300F29E85 /* FriendsUserViewController.swift */; };
+		E9CC11EE27924FCA00F29E85 /* LocationUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11ED27924FCA00F29E85 /* LocationUserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		E9CC11DF27921C1B00F29E85 /* AboutUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserView.swift; sourceTree = "<group>"; };
 		E9CC11E22792252800F29E85 /* TagsUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsUserView.swift; sourceTree = "<group>"; };
 		E9CC11E4279229F900F29E85 /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
+		E9CC11E927924F2700F29E85 /* AboutUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserViewController.swift; sourceTree = "<group>"; };
+		E9CC11EB27924FA300F29E85 /* FriendsUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsUserViewController.swift; sourceTree = "<group>"; };
+		E9CC11ED27924FCA00F29E85 /* LocationUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,9 @@
 				E9CC11CB2791D43B00F29E85 /* Networking */,
 				E9CC11B72791AE7500F29E85 /* ListUsers */,
 				E9CC11D52791FD7D00F29E85 /* DetailUser */,
+				E9CC11E627924E2300F29E85 /* AboutUser */,
+				E9CC11E827924E5B00F29E85 /* FriendsUser */,
+				E9CC11E727924E4C00F29E85 /* LocationUser */,
 				E9CC11C22791B28C00F29E85 /* Model */,
 				E9CC11AB2791AD3400F29E85 /* LaunchScreen.storyboard */,
 				E9CC11A92791AD3400F29E85 /* Assets.xcassets */,
@@ -131,9 +140,9 @@
 			isa = PBXGroup;
 			children = (
 				E9CC11BA2791AF5B00F29E85 /* ListUsersView.swift */,
-				E9CC11B82791AEDC00F29E85 /* ListUsersViewController.swift */,
 				E9CC11BE2791AFF400F29E85 /* UserCollectionViewCell.swift */,
 				E9CC11C32791CED300F29E85 /* UserTableViewCell.swift */,
+				E9CC11B82791AEDC00F29E85 /* ListUsersViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,6 +194,30 @@
 				E9CC11DB2791FE4800F29E85 /* DetailUserViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E9CC11E627924E2300F29E85 /* AboutUser */ = {
+			isa = PBXGroup;
+			children = (
+				E9CC11E927924F2700F29E85 /* AboutUserViewController.swift */,
+			);
+			path = AboutUser;
+			sourceTree = "<group>";
+		};
+		E9CC11E727924E4C00F29E85 /* LocationUser */ = {
+			isa = PBXGroup;
+			children = (
+				E9CC11ED27924FCA00F29E85 /* LocationUserViewController.swift */,
+			);
+			path = LocationUser;
+			sourceTree = "<group>";
+		};
+		E9CC11E827924E5B00F29E85 /* FriendsUser */ = {
+			isa = PBXGroup;
+			children = (
+				E9CC11EB27924FA300F29E85 /* FriendsUserViewController.swift */,
+			);
+			path = FriendsUser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +301,7 @@
 				E9CC11A12791AD3100F29E85 /* AppDelegate.swift in Sources */,
 				E9CC11DA2791FDD000F29E85 /* DetailUserView.swift in Sources */,
 				E9CC11D82791FDB600F29E85 /* DetailUserViewController.swift in Sources */,
+				E9CC11EE27924FCA00F29E85 /* LocationUserViewController.swift in Sources */,
 				E9CC11E027921C1B00F29E85 /* AboutUserView.swift in Sources */,
 				E9CC11D32791E03B00F29E85 /* UserTableViewCellViewModel.swift in Sources */,
 				E9CC11A32791AD3100F29E85 /* SceneDelegate.swift in Sources */,
@@ -275,8 +309,10 @@
 				E9CC11CA2791D3E500F29E85 /* User.swift in Sources */,
 				E9CC11C62791D1AD00F29E85 /* ListUsersViewModel.swift in Sources */,
 				E9CC11BB2791AF5B00F29E85 /* ListUsersView.swift in Sources */,
+				E9CC11EA27924F2700F29E85 /* AboutUserViewController.swift in Sources */,
 				E9CC11E5279229F900F29E85 /* OtherUserView.swift in Sources */,
 				E9CC11BF2791AFF400F29E85 /* UserCollectionViewCell.swift in Sources */,
+				E9CC11EC27924FA300F29E85 /* FriendsUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +458,7 @@
 				INFOPLIST_FILE = userTestApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -449,6 +486,7 @@
 				INFOPLIST_FILE = userTestApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
