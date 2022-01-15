@@ -13,6 +13,7 @@ protocol ListUsersViewModelProtocol: AnyObject {
     func countUsers() -> Int
     func tableCellViewModel(at indexPath: IndexPath) -> UserTableViewCellViewModelProtocol
     func collectionViewCellViewModel(at indexPath: IndexPath) -> UserCollectionViewCellViewModelProtocol
+    func selectedCell(at indexPath: IndexPath) -> DetailUserViewModelProtocol
 }
 
 final class ListUsersViewModel: ListUsersViewModelProtocol {
@@ -37,6 +38,11 @@ final class ListUsersViewModel: ListUsersViewModelProtocol {
     func tableCellViewModel(at indexPath: IndexPath) -> UserTableViewCellViewModelProtocol {
         let user = self.users[indexPath.row]
         return UserTableViewCellViewModel(user: user)
+    }
+    
+    func selectedCell(at indexPath: IndexPath) -> DetailUserViewModelProtocol {
+        let user = self.users[indexPath.row]
+        return DetailUserViewModel(user: user)
     }
 }
 

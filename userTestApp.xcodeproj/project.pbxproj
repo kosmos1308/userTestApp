@@ -22,6 +22,13 @@
 		E9CC11CF2791D48A00F29E85 /* generated.json in Resources */ = {isa = PBXBuildFile; fileRef = E9CC11CE2791D48900F29E85 /* generated.json */; };
 		E9CC11D12791D5A000F29E85 /* UserCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11D02791D5A000F29E85 /* UserCollectionViewCellViewModel.swift */; };
 		E9CC11D32791E03B00F29E85 /* UserTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11D22791E03B00F29E85 /* UserTableViewCellViewModel.swift */; };
+		E9CC11D82791FDB600F29E85 /* DetailUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11D72791FDB600F29E85 /* DetailUserViewController.swift */; };
+		E9CC11DA2791FDD000F29E85 /* DetailUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11D92791FDD000F29E85 /* DetailUserView.swift */; };
+		E9CC11DC2791FE4800F29E85 /* DetailUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11DB2791FE4800F29E85 /* DetailUserViewModel.swift */; };
+		E9CC11DE27920E1600F29E85 /* ContactsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11DD27920E1600F29E85 /* ContactsUserView.swift */; };
+		E9CC11E027921C1B00F29E85 /* AboutUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11DF27921C1B00F29E85 /* AboutUserView.swift */; };
+		E9CC11E32792252800F29E85 /* TagsUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11E22792252800F29E85 /* TagsUserView.swift */; };
+		E9CC11E5279229F900F29E85 /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11E4279229F900F29E85 /* OtherUserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +49,13 @@
 		E9CC11CE2791D48900F29E85 /* generated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = generated.json; sourceTree = "<group>"; };
 		E9CC11D02791D5A000F29E85 /* UserCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		E9CC11D22791E03B00F29E85 /* UserTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		E9CC11D72791FDB600F29E85 /* DetailUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewController.swift; sourceTree = "<group>"; };
+		E9CC11D92791FDD000F29E85 /* DetailUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserView.swift; sourceTree = "<group>"; };
+		E9CC11DB2791FE4800F29E85 /* DetailUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewModel.swift; sourceTree = "<group>"; };
+		E9CC11DD27920E1600F29E85 /* ContactsUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsUserView.swift; sourceTree = "<group>"; };
+		E9CC11DF27921C1B00F29E85 /* AboutUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserView.swift; sourceTree = "<group>"; };
+		E9CC11E22792252800F29E85 /* TagsUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsUserView.swift; sourceTree = "<group>"; };
+		E9CC11E4279229F900F29E85 /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +91,7 @@
 				E9CC11B62791AE2F00F29E85 /* Application */,
 				E9CC11CB2791D43B00F29E85 /* Networking */,
 				E9CC11B72791AE7500F29E85 /* ListUsers */,
+				E9CC11D52791FD7D00F29E85 /* DetailUser */,
 				E9CC11C22791B28C00F29E85 /* Model */,
 				E9CC11AB2791AD3400F29E85 /* LaunchScreen.storyboard */,
 				E9CC11A92791AD3400F29E85 /* Assets.xcassets */,
@@ -140,6 +155,36 @@
 				E9CC11CE2791D48900F29E85 /* generated.json */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		E9CC11D42791FD6D00F29E85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E9CC11D92791FDD000F29E85 /* DetailUserView.swift */,
+				E9CC11DD27920E1600F29E85 /* ContactsUserView.swift */,
+				E9CC11DF27921C1B00F29E85 /* AboutUserView.swift */,
+				E9CC11E22792252800F29E85 /* TagsUserView.swift */,
+				E9CC11E4279229F900F29E85 /* OtherUserView.swift */,
+				E9CC11D72791FDB600F29E85 /* DetailUserViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E9CC11D52791FD7D00F29E85 /* DetailUser */ = {
+			isa = PBXGroup;
+			children = (
+				E9CC11D42791FD6D00F29E85 /* View */,
+				E9CC11D62791FD9000F29E85 /* ViewModel */,
+			);
+			path = DetailUser;
+			sourceTree = "<group>";
+		};
+		E9CC11D62791FD9000F29E85 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E9CC11DB2791FE4800F29E85 /* DetailUserViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,15 +260,22 @@
 			files = (
 				E9CC11D12791D5A000F29E85 /* UserCollectionViewCellViewModel.swift in Sources */,
 				E9CC11B92791AEDC00F29E85 /* ListUsersViewController.swift in Sources */,
+				E9CC11E32792252800F29E85 /* TagsUserView.swift in Sources */,
 				E9CC11C12791B26100F29E85 /* Metrics.swift in Sources */,
 				E9CC11C42791CED300F29E85 /* UserTableViewCell.swift in Sources */,
+				E9CC11DC2791FE4800F29E85 /* DetailUserViewModel.swift in Sources */,
 				E9CC11CD2791D45800F29E85 /* NetworkingManager.swift in Sources */,
 				E9CC11A12791AD3100F29E85 /* AppDelegate.swift in Sources */,
+				E9CC11DA2791FDD000F29E85 /* DetailUserView.swift in Sources */,
+				E9CC11D82791FDB600F29E85 /* DetailUserViewController.swift in Sources */,
+				E9CC11E027921C1B00F29E85 /* AboutUserView.swift in Sources */,
 				E9CC11D32791E03B00F29E85 /* UserTableViewCellViewModel.swift in Sources */,
 				E9CC11A32791AD3100F29E85 /* SceneDelegate.swift in Sources */,
+				E9CC11DE27920E1600F29E85 /* ContactsUserView.swift in Sources */,
 				E9CC11CA2791D3E500F29E85 /* User.swift in Sources */,
 				E9CC11C62791D1AD00F29E85 /* ListUsersViewModel.swift in Sources */,
 				E9CC11BB2791AF5B00F29E85 /* ListUsersView.swift in Sources */,
+				E9CC11E5279229F900F29E85 /* OtherUserView.swift in Sources */,
 				E9CC11BF2791AFF400F29E85 /* UserCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -52,7 +52,13 @@ final class ListUsersViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.title = "Users" //delete
     }
-
+    
+    private func nextVC(at indexPath: IndexPath) {
+        let detailViewModel = self.viewModel?.selectedCell(at: indexPath)
+        let detailVC = DetailUserViewController()
+        detailVC.viewModel = detailViewModel
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 
@@ -75,9 +81,8 @@ extension ListUsersViewController: UICollectionViewDataSource {
 
 //MARK: - UICollectionViewDelegateFlowLayout
 extension ListUsersViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        self.nextVC(at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -129,6 +134,6 @@ extension ListUsersViewController: UITableViewDataSource {
 extension ListUsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        self.nextVC(at: indexPath)
     }
 }
