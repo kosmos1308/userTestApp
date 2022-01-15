@@ -12,14 +12,14 @@ final class DetailUserView: UIView {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .blue
+        scrollView.backgroundColor = .systemBackground
         return scrollView
     }()
 
     lazy var userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .systemGray
+        imageView.image = UIImage(named: "")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 50
         imageView.layer.borderWidth = 5
@@ -30,8 +30,7 @@ final class DetailUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        label.backgroundColor = .systemGray6
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -39,8 +38,7 @@ final class DetailUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        label.backgroundColor = .systemGray
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -48,8 +46,7 @@ final class DetailUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        label.backgroundColor = .systemGray6
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -57,8 +54,7 @@ final class DetailUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        label.backgroundColor = .systemGray
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -66,8 +62,7 @@ final class DetailUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        label.backgroundColor = .systemGray
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -179,17 +174,17 @@ final class DetailUserView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            self.contactsView.phoneLabel.topAnchor.constraint(equalTo: self.contactsView.emailLabel.bottomAnchor),
+            self.contactsView.phoneLabel.topAnchor.constraint(equalTo: self.contactsView.emailLabel.bottomAnchor, constant: 5),
             self.contactsView.phoneLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.contactsView.phoneLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
             self.contactsView.phoneLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
         
         NSLayoutConstraint.activate([
-            self.contactsView.adressLabel.topAnchor.constraint(equalTo: self.contactsView.phoneLabel.bottomAnchor),
+            self.contactsView.adressLabel.topAnchor.constraint(equalTo: self.contactsView.phoneLabel.bottomAnchor, constant: 5),
             self.contactsView.adressLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.contactsView.adressLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.contactsView.adressLabel.heightAnchor.constraint(equalToConstant: 50)
+            self.contactsView.adressLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
         
         //about

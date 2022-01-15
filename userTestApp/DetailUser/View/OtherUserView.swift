@@ -14,7 +14,6 @@ final class OtherUserView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 30, weight: .bold)
-        label.backgroundColor = .systemGray
         return label
     }()
 
@@ -22,8 +21,7 @@ final class OtherUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17)
-        label.backgroundColor = .systemGray5
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -31,8 +29,7 @@ final class OtherUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17)
-        label.backgroundColor = .systemGray
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         label.numberOfLines = 3
         return label
     }()
@@ -41,8 +38,7 @@ final class OtherUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17)
-        label.backgroundColor = .systemGray5
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     

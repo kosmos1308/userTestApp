@@ -14,7 +14,6 @@ final class ContactsUserView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 30, weight: .bold)
-        label.backgroundColor = .systemGray
         return label
     }()
    
@@ -22,8 +21,7 @@ final class ContactsUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17)
-        label.backgroundColor = .systemGray5
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -31,8 +29,7 @@ final class ContactsUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17)
-        label.backgroundColor = .systemGray
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -40,9 +37,8 @@ final class ContactsUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17)
-        label.backgroundColor = .systemGray5
-        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     

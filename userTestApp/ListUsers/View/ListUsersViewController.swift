@@ -10,18 +10,27 @@ import UIKit
 final class ListUsersViewController: UIViewController {
     
     private let listUsersView = ListUsersView()
+    
     private var sortAgeUsersArray = [User]()
+    private var filtrGenderArray = [User]()
     
     private var viewModel: ListUsersViewModelProtocol? {
         didSet {
+            self.viewModel?.fetchUsers {
+                self.listUsersView.usersCollectionView.reloadData()
+                self.listUsersView.usersTableView.reloadData()
+            }
+            
             self.viewModel?.sortAgeUsers = { [weak self] sortUsers in
+                self?.filtrGenderArray.removeAll()
                 self?.sortAgeUsersArray = sortUsers
                 self?.listUsersView.usersTableView.reloadData()
             }
             
-            self.viewModel?.fetchUsers {
-                self.listUsersView.usersCollectionView.reloadData()
-                self.listUsersView.usersTableView.reloadData()
+            self.viewModel?.filterGender = { [weak self] filtrGender in
+                self?.sortAgeUsersArray.removeAll()
+                self?.filtrGenderArray = filtrGender
+                self?.listUsersView.usersTableView.reloadData()
             }
         }
     }
@@ -64,10 +73,17 @@ final class ListUsersViewController: UIViewController {
                                             target: self,
                                             action: #selector(sortAgeDownButtonTapped))
         self.navigationItem.rightBarButtonItems = [ageDownBarButton, ageUpBarButton]
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "gender",
-                                                    style: .plain,
-                                                    target: self,
-                                                    action: #selector(chooiseGenderButtonTapped))
+        
+        
+        let maleBarButton = UIBarButtonItem(title: "🙎‍♂️ male",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(maleButtonTapped))
+        let femaleBarButton = UIBarButtonItem(title: "🙍‍♀️ female",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(femaleButtonTapped))
+        self.navigationItem.leftBarButtonItems = [maleBarButton, femaleBarButton]
     }
     
     private func nextVC(at indexPath: IndexPath) {
@@ -85,8 +101,12 @@ final class ListUsersViewController: UIViewController {
         self.viewModel?.sortAgeDownUsersPressed()
     }
            
-    @objc private func chooiseGenderButtonTapped() {
-        
+    @objc private func maleButtonTapped() {
+        self.viewModel?.malePressed()
+    }
+    
+    @objc private func femaleButtonTapped() {
+        self.viewModel?.femalePressed()
     }
 }
 
@@ -94,7 +114,6 @@ final class ListUsersViewController: UIViewController {
 //MARK: - UICollectionViewDataSource
 extension ListUsersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return self.viewModel?.countUsers() ?? 0
     }
     
@@ -103,7 +122,6 @@ extension ListUsersViewController: UICollectionViewDataSource {
         let cell = self.listUsersView.usersCollectionView.dequeueReusableCell(withReuseIdentifier: UserCollectionViewCell.id, for:  indexPath)
         guard let userCell = cell as? UserCollectionViewCell else { return cell }
         userCell.viewModel = self.viewModel?.collectionViewCellViewModel(at: indexPath)
-        
         return userCell
     }
 }
@@ -142,7 +160,11 @@ extension ListUsersViewController: UICollectionViewDelegateFlowLayout {
 extension ListUsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.viewModel?.countUsers() ?? 0
+        if self.filtrGenderArray.isEmpty {
+            return self.viewModel?.countUsers() ?? 0
+        } else {
+            return self.filtrGenderArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -150,14 +172,18 @@ extension ListUsersViewController: UITableViewDataSource {
         guard let userCell = cell as? UserTableViewCell else { return cell }
         userCell.viewModel = self.viewModel?.tableCellViewModel(at: indexPath)
         
-        if sortAgeUsersArray.isEmpty {
+        if sortAgeUsersArray.isEmpty && filtrGenderArray.isEmpty {
             userCell.viewModel = self.viewModel?.tableCellViewModel(at: indexPath)
-        } else {
+        } else if sortAgeUsersArray.isEmpty == false {
             userCell.nameLabel.text = self.sortAgeUsersArray[indexPath.row].name
             userCell.ageLabel.text = "\(self.sortAgeUsersArray[indexPath.row].age)"
             userCell.genderLabel.text = self.sortAgeUsersArray[indexPath.row].gender
+        } else if filtrGenderArray.isEmpty == false {
+            userCell.nameLabel.text = self.filtrGenderArray[indexPath.row].name
+            userCell.ageLabel.text = "\(self.filtrGenderArray[indexPath.row].age)"
+            userCell.genderLabel.text = self.filtrGenderArray[indexPath.row].gender
         }
-        
+    
         return userCell
     }
     
@@ -171,6 +197,6 @@ extension ListUsersViewController: UITableViewDataSource {
 extension ListUsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.nextVC(at: indexPath)
+        //self.nextVC(at: indexPath)
     }
 }

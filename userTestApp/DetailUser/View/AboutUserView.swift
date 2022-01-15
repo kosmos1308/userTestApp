@@ -14,7 +14,6 @@ final class AboutUserView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 30, weight: .bold)
-        label.backgroundColor = .systemGray
         return label
     }()
     
@@ -23,7 +22,6 @@ final class AboutUserView: UIView {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isScrollEnabled = false
         textView.isEditable = false
-        textView.backgroundColor = .systemGray5
         textView.font = .systemFont(ofSize: 17)
         return textView
     }()

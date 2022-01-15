@@ -13,7 +13,6 @@ final class TagsUserView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 30, weight: .bold)
-        label.backgroundColor = .systemGray
         return label
     }()
     
@@ -21,8 +20,7 @@ final class TagsUserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17, weight: .bold)
-        label.backgroundColor = .systemGray5
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         label.numberOfLines = 0
         return label
     }()
