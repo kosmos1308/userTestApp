@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E98D620627938377003101EA /* AboutUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D620527938377003101EA /* AboutUserViewModel.swift */; };
 		E98D62082793960B003101EA /* FriendsUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D62072793960B003101EA /* FriendsUserViewModel.swift */; };
+		E98D620A2793A87E003101EA /* LocationUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D62092793A87E003101EA /* LocationUserViewModel.swift */; };
 		E9CC11A12791AD3100F29E85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11A02791AD3100F29E85 /* AppDelegate.swift */; };
 		E9CC11A32791AD3100F29E85 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC11A22791AD3100F29E85 /* SceneDelegate.swift */; };
 		E9CC11AA2791AD3400F29E85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9CC11A92791AD3400F29E85 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		E98D620527938377003101EA /* AboutUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserViewModel.swift; sourceTree = "<group>"; };
 		E98D62072793960B003101EA /* FriendsUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsUserViewModel.swift; sourceTree = "<group>"; };
+		E98D62092793A87E003101EA /* LocationUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUserViewModel.swift; sourceTree = "<group>"; };
 		E9CC119D2791AD3100F29E85 /* userTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = userTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9CC11A02791AD3100F29E85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9CC11A22791AD3100F29E85 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				E9CC11ED27924FCA00F29E85 /* LocationUserViewController.swift */,
+				E98D62092793A87E003101EA /* LocationUserViewModel.swift */,
 			);
 			path = LocationUser;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				E9CC11C42791CED300F29E85 /* UserTableViewCell.swift in Sources */,
 				E9CC11DC2791FE4800F29E85 /* DetailUserViewModel.swift in Sources */,
 				E9CC11CD2791D45800F29E85 /* NetworkingManager.swift in Sources */,
+				E98D620A2793A87E003101EA /* LocationUserViewModel.swift in Sources */,
 				E9CC11A12791AD3100F29E85 /* AppDelegate.swift in Sources */,
 				E9CC11DA2791FDD000F29E85 /* DetailUserView.swift in Sources */,
 				E9CC11D82791FDB600F29E85 /* DetailUserViewController.swift in Sources */,

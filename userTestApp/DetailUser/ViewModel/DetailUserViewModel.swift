@@ -8,7 +8,6 @@
 import Foundation
 
 protocol DetailUserViewModelProtocol: AnyObject {
-    
     //personal
     var userName: String { get }
     var userGender: String { get }
@@ -23,6 +22,8 @@ protocol DetailUserViewModelProtocol: AnyObject {
     var userEmail: String { get }
     var userPhone: String { get }
     var userAdress: String { get }
+    var userLatitude: Double { get }
+    var userLongitude: Double { get }
     
     //about
     var about: String { get }
@@ -42,14 +43,18 @@ protocol DetailUserViewModelProtocol: AnyObject {
     
     //buttons
     func selectedShowFriends(friends: [Friend]) -> FriendsUserViewModelProtocol
-    
-    
+    func selectedShowLocation(name: String, latitude: Double, longitude: Double) -> LocationUserViewModelProtocol
+
     init(user: User)
 }
 
 final class DetailUserViewModel: DetailUserViewModelProtocol {
     
     private let user: User
+    
+    init(user: User) {
+        self.user = user
+    }
     
     var userName: String {
         self.user.name
@@ -93,6 +98,14 @@ final class DetailUserViewModel: DetailUserViewModelProtocol {
     
     var userAdress: String {
         "📍 " + self.user.address
+    }
+    
+    var userLatitude: Double {
+        self.user.latitude
+    }
+    
+    var userLongitude: Double {
+        self.user.longitude
     }
     
     var about: String {
@@ -140,10 +153,6 @@ final class DetailUserViewModel: DetailUserViewModelProtocol {
         self.user.friends
     }
     
-    init(user: User) {
-        self.user = user
-    }
-    
     func selectedShowMore(about: String) -> AboutUserViewModelProtocol {
         return AboutUserViewModel(about: self.user.about)
     }
@@ -151,34 +160,8 @@ final class DetailUserViewModel: DetailUserViewModelProtocol {
     func selectedShowFriends(friends: [Friend]) -> FriendsUserViewModelProtocol {
         return FriendsUserViewModel(friends: self.user.friends)
     }
+    
+    func selectedShowLocation(name: String, latitude: Double, longitude: Double) -> LocationUserViewModelProtocol {
+        return LocationUserViewModel(name: self.user.name, latitude: self.user.latitude, longitude: self.user.longitude)
+    }
 }
-
-
-//+"registered": "2017-03-24T11:00:25 -03:00",
-//+ button "latitude": -31.651334,
-//"longitude": -40.934403,
-//+ "tags": [
-//  "adipisicing",
-//  "officia",
-//  "amet",
-//  "ut",
-//  "dolor",
-//  "consectetur",
-//  "consequat"
-//],
-//+ button "friends": [
-//  {
-//    "id": 0,
-//    "name": "Mcintosh Sherman"
-//  },
-//  {
-//    "id": 1,
-//    "name": "Cain Lucas"
-//  },
-//  {
-//    "id": 2,
-//    "name": "Mckenzie Kane"
-//  }
-//],
-//"greeting": "Hello, Preston Wise! You have 4 unread messages.",
-//"favoriteFruit": "apple"

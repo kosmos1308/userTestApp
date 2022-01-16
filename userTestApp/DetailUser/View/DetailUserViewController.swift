@@ -90,8 +90,12 @@ final class DetailUserViewController: UIViewController {
 
     
     @objc private func showLocationButtonTapped() {
-        
+        let locationViewModel = self.viewModel?.selectedShowLocation(name: self.viewModel?.userName ?? "",
+                                                                     latitude: self.viewModel?.userLatitude ?? 0,
+                                                                     longitude: self.viewModel?.userLongitude ?? 0)
         let locationVC = LocationUserViewController()
+        locationVC.viewModel = locationViewModel
+        locationVC.modalPresentationStyle = .fullScreen
         present(locationVC, animated: true, completion: nil)
     }
 }
