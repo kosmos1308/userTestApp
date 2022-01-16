@@ -19,9 +19,10 @@ final class DetailUserView: UIView {
     lazy var userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "")
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 50
+        imageView.image = UIImage(systemName: "figure.wave.circle.fill")
+        imageView.tintColor = .systemGray
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = Metrics.cornerRadius
         imageView.layer.borderWidth = 5
         return imageView
     }()
@@ -75,7 +76,7 @@ final class DetailUserView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.scrollView.contentSize = CGSize(width: self.bounds.width, height: 900)
+        self.scrollView.contentSize = CGSize(width: self.bounds.width, height: Metrics.scrollDirection)
         
         self.addSubview(self.scrollView)
         self.scrollView.addSubview(self.userImageView)
@@ -93,7 +94,8 @@ final class DetailUserView: UIView {
         
         //about
         self.scrollView.addSubview(self.aboutView.aboutLabel)
-        self.scrollView.addSubview(self.aboutView.aboutTextView)
+        self.scrollView.addSubview(self.aboutView.descriptionLabel)
+        self.scrollView.addSubview(self.aboutView.showMoreButton)
         
         //tags
         self.scrollView.addSubview(self.tagsView.tagsLabel)
@@ -117,147 +119,154 @@ final class DetailUserView: UIView {
         
         //detailPerson
         NSLayoutConstraint.activate([
-            self.userImageView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 10),
-            self.userImageView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor, constant: 20),
-            self.userImageView.heightAnchor.constraint(equalToConstant: 100),
-            self.userImageView.widthAnchor.constraint(equalToConstant: 100)
+            self.userImageView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: Metrics.top),
+            self.userImageView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor, constant: Metrics.leading),
+            self.userImageView.heightAnchor.constraint(equalToConstant: Metrics.height*2),
+            self.userImageView.widthAnchor.constraint(equalToConstant: Metrics.width/2)
         ])
         
         NSLayoutConstraint.activate([
-            self.genderLabel.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 10),
-            self.genderLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: 20),
-            self.genderLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.genderLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.genderLabel.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: Metrics.top),
+            self.genderLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: Metrics.leading),
+            self.genderLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
+            self.genderLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         NSLayoutConstraint.activate([
             self.ageLabel.topAnchor.constraint(equalTo: self.genderLabel.bottomAnchor),
-            self.ageLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: 20),
-            self.ageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.ageLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.ageLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: Metrics.leading),
+            self.ageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
+            self.ageLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         NSLayoutConstraint.activate([
             self.eyeColorLabel.topAnchor.constraint(equalTo: self.ageLabel.bottomAnchor),
-            self.eyeColorLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: 20),
-            self.eyeColorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.eyeColorLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.eyeColorLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: Metrics.leading),
+            self.eyeColorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
+            self.eyeColorLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         NSLayoutConstraint.activate([
             self.companyLabel.topAnchor.constraint(equalTo: self.eyeColorLabel.bottomAnchor),
-            self.companyLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: 20),
-            self.companyLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.companyLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.companyLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: Metrics.leading),
+            self.companyLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
+            self.companyLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         NSLayoutConstraint.activate([
             self.balanceLabel.topAnchor.constraint(equalTo: self.companyLabel.bottomAnchor),
-            self.balanceLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: 20),
-            self.balanceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.balanceLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.balanceLabel.leadingAnchor.constraint(equalTo: self.userImageView.trailingAnchor, constant: Metrics.leading),
+            self.balanceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
+            self.balanceLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         //contacts
         NSLayoutConstraint.activate([
-            self.contactsView.contactLabel.topAnchor.constraint(equalTo: self.userImageView.bottomAnchor, constant: 20),
+            self.contactsView.contactLabel.topAnchor.constraint(equalTo: self.userImageView.bottomAnchor, constant: Metrics.betweenViews),
             self.contactsView.contactLabel.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor, constant: Metrics.leading),
-            self.contactsView.contactLabel.heightAnchor.constraint(equalToConstant: 40),
-            self.contactsView.contactLabel.widthAnchor.constraint(equalToConstant: 200)
+            self.contactsView.contactLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel),
+            self.contactsView.contactLabel.widthAnchor.constraint(equalToConstant: Metrics.width)
         ])
         
         NSLayoutConstraint.activate([
             self.contactsView.emailLabel.topAnchor.constraint(equalTo: self.contactsView.contactLabel.bottomAnchor),
             self.contactsView.emailLabel.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor, constant: Metrics.leading),
             self.contactsView.emailLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.contactsView.emailLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.contactsView.emailLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         NSLayoutConstraint.activate([
-            self.contactsView.phoneLabel.topAnchor.constraint(equalTo: self.contactsView.emailLabel.bottomAnchor, constant: 5),
+            self.contactsView.phoneLabel.topAnchor.constraint(equalTo: self.contactsView.emailLabel.bottomAnchor, constant: Metrics.betweenLabels),
             self.contactsView.phoneLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.contactsView.phoneLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.contactsView.phoneLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.contactsView.phoneLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         NSLayoutConstraint.activate([
-            self.contactsView.adressLabel.topAnchor.constraint(equalTo: self.contactsView.phoneLabel.bottomAnchor, constant: 5),
+            self.contactsView.adressLabel.topAnchor.constraint(equalTo: self.contactsView.phoneLabel.bottomAnchor, constant: Metrics.betweenLabels),
             self.contactsView.adressLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.contactsView.adressLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.contactsView.adressLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.contactsView.adressLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         //about
         NSLayoutConstraint.activate([
-            self.aboutView.aboutLabel.topAnchor.constraint(equalTo: self.contactsView.adressLabel.bottomAnchor, constant: 20),
+            self.aboutView.aboutLabel.topAnchor.constraint(equalTo: self.contactsView.adressLabel.bottomAnchor, constant: Metrics.betweenViews),
             self.aboutView.aboutLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.aboutView.aboutLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.aboutView.aboutLabel.heightAnchor.constraint(equalToConstant: 40)
+            self.aboutView.aboutLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel)
         ])
         
         NSLayoutConstraint.activate([
-            self.aboutView.aboutTextView.topAnchor.constraint(equalTo: self.aboutView.aboutLabel.bottomAnchor),
-            self.aboutView.aboutTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
-            self.aboutView.aboutTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.aboutView.aboutTextView.heightAnchor.constraint(equalToConstant: 150)
+            self.aboutView.descriptionLabel.topAnchor.constraint(equalTo: self.aboutView.aboutLabel.bottomAnchor),
+            self.aboutView.descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
+            self.aboutView.descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
+            self.aboutView.descriptionLabel.heightAnchor.constraint(equalToConstant: Metrics.height*1.3)
+        ])
+        
+        NSLayoutConstraint.activate([
+            self.aboutView.showMoreButton.topAnchor.constraint(equalTo: self.aboutView.descriptionLabel.bottomAnchor),
+            self.aboutView.showMoreButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
+            self.aboutView.showMoreButton.widthAnchor.constraint(equalToConstant: Metrics.width/2),
+            self.aboutView.showMoreButton.heightAnchor.constraint(equalToConstant: Metrics.heightButton/2)
         ])
         
         //tags
         NSLayoutConstraint.activate([
-            self.tagsView.tagsLabel.topAnchor.constraint(equalTo: self.aboutView.aboutTextView.bottomAnchor, constant: 20),
+            self.tagsView.tagsLabel.topAnchor.constraint(equalTo: self.aboutView.descriptionLabel.bottomAnchor, constant: Metrics.betweenViews),
             self.tagsView.tagsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.tagsView.tagsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.tagsView.tagsLabel.heightAnchor.constraint(equalToConstant: 40)
+            self.tagsView.tagsLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel)
         ])
         
         NSLayoutConstraint.activate([
             self.tagsView.descriptionTagsLabel.topAnchor.constraint(equalTo: self.tagsView.tagsLabel.bottomAnchor),
             self.tagsView.descriptionTagsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.tagsView.descriptionTagsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.tagsView.descriptionTagsLabel.heightAnchor.constraint(equalToConstant: 50)
+            self.tagsView.descriptionTagsLabel.heightAnchor.constraint(equalToConstant: Metrics.height)
         ])
         
         //other
         NSLayoutConstraint.activate([
-            self.otherView.otherLabel.topAnchor.constraint(equalTo: self.tagsView.descriptionTagsLabel.bottomAnchor, constant: 20),
+            self.otherView.otherLabel.topAnchor.constraint(equalTo: self.tagsView.descriptionTagsLabel.bottomAnchor, constant: Metrics.betweenViews),
             self.otherView.otherLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.otherView.otherLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.otherView.otherLabel.heightAnchor.constraint(equalToConstant: 40)
+            self.otherView.otherLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel)
         ])
         
         NSLayoutConstraint.activate([
             self.otherView.favoriteFruitLabel.topAnchor.constraint(equalTo: self.otherView.otherLabel.bottomAnchor),
             self.otherView.favoriteFruitLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.otherView.favoriteFruitLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.otherView.favoriteFruitLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.otherView.favoriteFruitLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         NSLayoutConstraint.activate([
             self.otherView.greetingLabel.topAnchor.constraint(equalTo: self.otherView.favoriteFruitLabel.bottomAnchor),
             self.otherView.greetingLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.otherView.greetingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.otherView.greetingLabel.heightAnchor.constraint(equalToConstant: 80)
+            self.otherView.greetingLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel*2)
         ])
         
         NSLayoutConstraint.activate([
             self.otherView.registeredLabel.topAnchor.constraint(equalTo: self.otherView.greetingLabel.bottomAnchor),
             self.otherView.registeredLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leading),
             self.otherView.registeredLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
-            self.otherView.registeredLabel.heightAnchor.constraint(equalToConstant: 20)
+            self.otherView.registeredLabel.heightAnchor.constraint(equalToConstant: Metrics.heightLabel/2)
         ])
         
         NSLayoutConstraint.activate([
-            self.otherView.friendsButton.topAnchor.constraint(equalTo: self.otherView.registeredLabel.bottomAnchor, constant: 30),
+            self.otherView.friendsButton.topAnchor.constraint(equalTo: self.otherView.registeredLabel.bottomAnchor, constant: Metrics.bottomButton),
             self.otherView.friendsButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.otherView.friendsButton.widthAnchor.constraint(equalToConstant: 200),
-            self.otherView.friendsButton.heightAnchor.constraint(equalToConstant: 45)
+            self.otherView.friendsButton.widthAnchor.constraint(equalToConstant: Metrics.widthButton),
+            self.otherView.friendsButton.heightAnchor.constraint(equalToConstant: Metrics.heightButton)
         ])
         
         NSLayoutConstraint.activate([
-            self.otherView.locationButton.topAnchor.constraint(equalTo: self.otherView.friendsButton.bottomAnchor, constant: 20),
+            self.otherView.locationButton.topAnchor.constraint(equalTo: self.otherView.friendsButton.bottomAnchor, constant: Metrics.bottomButton),
             self.otherView.locationButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.otherView.locationButton.widthAnchor.constraint(equalToConstant: 200),
-            self.otherView.locationButton.heightAnchor.constraint(equalToConstant: 45)
+            self.otherView.locationButton.widthAnchor.constraint(equalToConstant: Metrics.widthButton),
+            self.otherView.locationButton.heightAnchor.constraint(equalToConstant: Metrics.heightButton)
         ])
     }
 }

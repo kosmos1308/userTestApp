@@ -26,7 +26,7 @@ final class UserTableViewCellViewModel: UserTableViewCellViewModelProtocol {
     }
     
     var userAge: String {
-        "\(self.user.age)"
+        "age: \(self.user.age)"
     }
     
     var userGender: String {

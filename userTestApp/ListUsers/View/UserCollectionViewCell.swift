@@ -18,8 +18,8 @@ final class UserCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.systemGray4.cgColor
         imageView.layer.borderWidth = Metrics.borderWidth
-        imageView.layer.cornerRadius = Metrics.cornerRadiusCell
-        imageView.backgroundColor = .systemCyan
+        imageView.layer.cornerRadius = Metrics.cornerRadius
+        imageView.backgroundColor = .systemGray
         return imageView
     }()
     

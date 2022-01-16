@@ -46,8 +46,10 @@ final class OtherUserView: UIView {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Show friends", for: .normal)
-        btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        btn.setTitleColor(UIColor.systemGreen, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        btn.setTitleColor(UIColor.systemBlue, for: .normal)
+        btn.backgroundColor = .systemGray5
+        btn.layer.cornerRadius = Metrics.cornerRadiusButton
         return btn
     }()
     
@@ -55,8 +57,10 @@ final class OtherUserView: UIView {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Show location", for: .normal)
-        btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        btn.setTitleColor(UIColor.systemGreen, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        btn.setTitleColor(UIColor.systemBlue, for: .normal)
+        btn.backgroundColor = .systemGray5
+        btn.layer.cornerRadius = Metrics.cornerRadiusButton
         return btn
     }()
 }

@@ -10,9 +10,9 @@ import UIKit
 final class ListUsersViewController: UIViewController {
     
     private let listUsersView = ListUsersView()
-    
     private var sortAgeUsersArray = [User]()
     private var filtrGenderArray = [User]()
+    private var updateUsersArray = [User]()
     
     private var viewModel: ListUsersViewModelProtocol? {
         didSet {
@@ -32,6 +32,13 @@ final class ListUsersViewController: UIViewController {
                 self?.filtrGenderArray = filtrGender
                 self?.listUsersView.usersTableView.reloadData()
             }
+            
+            self.viewModel?.updateUsers = { [weak self] updateUsers in
+                self?.filtrGenderArray.removeAll()
+                self?.sortAgeUsersArray.removeAll()
+                self?.updateUsersArray = updateUsers
+                self?.listUsersView.usersTableView.reloadData()
+            }
         }
     }
 
@@ -48,18 +55,13 @@ final class ListUsersViewController: UIViewController {
         self.setupTableAndCollectionView()
     }
     
-    
-    func setupTableAndCollectionView() {
+    private func setupTableAndCollectionView() {
         self.listUsersView.usersCollectionView.delegate = self
         self.listUsersView.usersCollectionView.dataSource = self
         self.listUsersView.usersTableView.delegate = self
         self.listUsersView.usersTableView.dataSource = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
     
     private func updateNavBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -72,7 +74,10 @@ final class ListUsersViewController: UIViewController {
                                             style: .plain,
                                             target: self,
                                             action: #selector(sortAgeDownButtonTapped))
-        self.navigationItem.rightBarButtonItems = [ageDownBarButton, ageUpBarButton]
+        let updateBarButton = UIBarButtonItem(barButtonSystemItem: .refresh,
+                                              target: self,
+                                              action: #selector(updateUsersTapped))
+        self.navigationItem.rightBarButtonItems = [ageDownBarButton, ageUpBarButton, updateBarButton]
         
         
         let maleBarButton = UIBarButtonItem(title: "🙎‍♂️ male",
@@ -107,6 +112,10 @@ final class ListUsersViewController: UIViewController {
     
     @objc private func femaleButtonTapped() {
         self.viewModel?.femalePressed()
+    }
+    
+    @objc private func updateUsersTapped() {
+        self.viewModel?.updatePressed()
     }
 }
 
@@ -172,7 +181,7 @@ extension ListUsersViewController: UITableViewDataSource {
         guard let userCell = cell as? UserTableViewCell else { return cell }
         userCell.viewModel = self.viewModel?.tableCellViewModel(at: indexPath)
         
-        if sortAgeUsersArray.isEmpty && filtrGenderArray.isEmpty {
+        if sortAgeUsersArray.isEmpty && filtrGenderArray.isEmpty && updateUsersArray.isEmpty {
             userCell.viewModel = self.viewModel?.tableCellViewModel(at: indexPath)
         } else if sortAgeUsersArray.isEmpty == false {
             userCell.nameLabel.text = self.sortAgeUsersArray[indexPath.row].name
@@ -182,8 +191,11 @@ extension ListUsersViewController: UITableViewDataSource {
             userCell.nameLabel.text = self.filtrGenderArray[indexPath.row].name
             userCell.ageLabel.text = "\(self.filtrGenderArray[indexPath.row].age)"
             userCell.genderLabel.text = self.filtrGenderArray[indexPath.row].gender
+        } else if updateUsersArray.isEmpty == false {
+            userCell.nameLabel.text = self.updateUsersArray[indexPath.row].name
+            userCell.ageLabel.text = "\(self.updateUsersArray[indexPath.row].age)"
+            userCell.genderLabel.text = self.updateUsersArray[indexPath.row].gender
         }
-    
         return userCell
     }
     
@@ -197,6 +209,5 @@ extension ListUsersViewController: UITableViewDataSource {
 extension ListUsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //self.nextVC(at: indexPath)
     }
 }

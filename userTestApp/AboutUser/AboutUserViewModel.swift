@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+protocol AboutUserViewModelProtocol {
+    var userAbout: String { get set }
+    init(about: String)
+}
+
+final class AboutUserViewModel: AboutUserViewModelProtocol {
+    
+    var userAbout: String
+    
+    init(about: String) {
+        self.userAbout = about
+    }
+}

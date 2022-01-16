@@ -14,16 +14,14 @@ protocol ListUsersViewModelProtocol: AnyObject {
     func tableCellViewModel(at indexPath: IndexPath) -> UserTableViewCellViewModelProtocol
     func collectionViewCellViewModel(at indexPath: IndexPath) -> UserCollectionViewCellViewModelProtocol
     func selectedCell(at indexPath: IndexPath) -> DetailUserViewModelProtocol
-    
-    //sort
     var sortAgeUsers: (([User]) -> Void)? { get set }
     func sortAgeUpUsersPressed()
     func sortAgeDownUsersPressed()
-    
-    //male or female
     var filterGender: (([User]) -> Void)? { get set }
     func malePressed()
     func femalePressed()
+    var updateUsers: (([User]) -> Void)? { get set }
+    func updatePressed()
 }
 
 final class ListUsersViewModel: ListUsersViewModelProtocol {
@@ -74,5 +72,10 @@ final class ListUsersViewModel: ListUsersViewModelProtocol {
     func femalePressed() {
         self.filterGender?(self.users.filter({$0.gender == "female"}))
     }
+    
+    var updateUsers: (([User]) -> Void)?
+    
+    func updatePressed() {
+        self.updateUsers?(self.users)
+    }
 }
-

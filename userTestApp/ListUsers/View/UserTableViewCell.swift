@@ -22,7 +22,7 @@ final class UserTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
-        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
         return label
     }()
     
@@ -30,7 +30,7 @@ final class UserTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
-        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
         return label
     }()
     
@@ -64,7 +64,7 @@ final class UserTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            self.genderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            self.genderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: Metrics.bottom),
             self.genderLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.trailing),
             self.genderLabel.heightAnchor.constraint(equalToConstant: Metrics.height/2),
             self.genderLabel.widthAnchor.constraint(equalToConstant: Metrics.widthLabel)

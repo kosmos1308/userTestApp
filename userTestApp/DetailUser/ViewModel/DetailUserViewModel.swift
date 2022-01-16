@@ -9,7 +9,7 @@ import Foundation
 
 protocol DetailUserViewModelProtocol: AnyObject {
     
-    //person
+    //personal
     var userName: String { get }
     var userGender: String { get }
     var userAge: String { get }
@@ -27,6 +27,7 @@ protocol DetailUserViewModelProtocol: AnyObject {
     //about
     var about: String { get }
     var userAbout: String { get }
+    func selectedShowMore(about: String) -> AboutUserViewModelProtocol
     
     //tags
     var tags: String { get }
@@ -37,9 +38,13 @@ protocol DetailUserViewModelProtocol: AnyObject {
     var userFavoriteFruit: String { get }
     var userGreeting: String { get }
     var userRegistered: String { get }
+    var userFriends: [Friend] { get }
+    
+    //buttons
+    func selectedShowFriends(friends: [Friend]) -> FriendsUserViewModelProtocol
+    
     
     init(user: User)
-    
 }
 
 final class DetailUserViewModel: DetailUserViewModelProtocol {
@@ -131,8 +136,20 @@ final class DetailUserViewModel: DetailUserViewModelProtocol {
         return "Registered: \(dateFormatterShow.string(from: date))"
     }
     
+    var userFriends: [Friend] {
+        self.user.friends
+    }
+    
     init(user: User) {
         self.user = user
+    }
+    
+    func selectedShowMore(about: String) -> AboutUserViewModelProtocol {
+        return AboutUserViewModel(about: self.user.about)
+    }
+    
+    func selectedShowFriends(friends: [Friend]) -> FriendsUserViewModelProtocol {
+        return FriendsUserViewModel(friends: self.user.friends)
     }
 }
 

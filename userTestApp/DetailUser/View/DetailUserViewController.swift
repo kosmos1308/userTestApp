@@ -31,7 +31,7 @@ final class DetailUserViewController: UIViewController {
             
             //about
             self.detailUserView.aboutView.aboutLabel.text = self.viewModel?.about
-            self.detailUserView.aboutView.aboutTextView.text = self.viewModel?.userAbout
+            self.detailUserView.aboutView.descriptionLabel.text = self.viewModel?.userAbout
             
             //tags
             self.detailUserView.tagsView.tagsLabel.text = self.viewModel?.tags
@@ -61,6 +61,10 @@ final class DetailUserViewController: UIViewController {
         self.detailUserView.otherView.locationButton.addTarget(self,
                                             action: #selector(showLocationButtonTapped),
                                             for: .touchUpInside)
+        
+        self.detailUserView.aboutView.showMoreButton.addTarget(self,
+                                            action: #selector(showAboutUserTapped),
+                                            for: .touchUpInside)
     }
     
     private func updateNavBar() {
@@ -68,14 +72,26 @@ final class DetailUserViewController: UIViewController {
     }
 
     
+    @objc private func showAboutUserTapped() {
+        let aboutViewModel = self.viewModel?.selectedShowMore(about: self.viewModel?.userAbout ?? "")
+        let aboutUserVC = AboutUserViewController()
+        aboutUserVC.viewModel = aboutViewModel
+        aboutUserVC.modalPresentationStyle = .fullScreen
+        present(aboutUserVC, animated: true, completion: nil)
+    }
+    
     @objc private func showFriendsButtonTapped() {
+        let friendsViewModel = self.viewModel?.selectedShowFriends(friends: self.viewModel?.userFriends ?? [])
         let friendsVC = FriendsUserViewController()
+        friendsVC.viewModel = friendsViewModel
+        friendsVC.modalPresentationStyle = .fullScreen
         present(friendsVC, animated: true, completion: nil)
     }
 
     
     @objc private func showLocationButtonTapped() {
-        let locationVC = FriendsUserViewController()
+        
+        let locationVC = LocationUserViewController()
         present(locationVC, animated: true, completion: nil)
     }
 }

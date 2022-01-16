@@ -17,14 +17,19 @@ final class AboutUserView: UIView {
         return label
     }()
     
-    lazy var aboutTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.isScrollEnabled = false
-        textView.isEditable = false
-        textView.font = .systemFont(ofSize: 17)
-        return textView
+    lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 17)
+        label.numberOfLines = 3
+        return label
     }()
     
-    //add button "show more ..."
+    lazy var showMoreButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("show more", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
 }
